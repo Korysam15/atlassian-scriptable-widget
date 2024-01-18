@@ -16,7 +16,8 @@ const styling = {
 
 // Fetch Atlassian Data
 async function fetchData() {
-  let request = new Request(config.jiraUrl + config.username);
+  let jqlQuery = encodeURIComponent(' AND status="In Progress"');
+  let request = new Request(config.jiraUrl + config.username + jqlQuery);
   request.headers = { "Authorization": `Bearer ${config.jiraAPIKey}` };
   let response = await request.loadJSON();
 
